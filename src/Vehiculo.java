@@ -32,4 +32,7 @@ public abstract class Vehiculo {
     public double getVelocidadPromedio() {
         return velocidadPromedio;
     }
+    public double getCostobase() {
+        return costobase;
+    }
 }

@@ -51,6 +51,10 @@ public class Main{
                     case 2 -> {
                         System.out.println("Ingrese la distancia a recorrer en km: ");
                         distancia = scanner.nextDouble();
+                        if (distancia <= 0) {
+                            System.out.println("La distancia debe ser mayor a 0.");
+                            break;
+                        }
                         for (Vehiculo v : vehiculos) {
                             double tiempo = (int)(v.calcularTiempo(distancia) * 100) / 100.0;
                             System.out.println(v.getNombre() + ": " + tiempo + " horas");
@@ -80,6 +84,10 @@ public class Main{
                         }
                         System.out.println("Ingrese la distancia a recorrer en km: ");
                         distancia = scanner.nextDouble();
+                        if (distancia <= 0) {
+                             System.out.println("La distancia debe ser mayor a 0.");
+                             break;
+                        }
                         System.out.println("\nReporte comparativo:");
                         for (Vehiculo v : vehiculos) {
                             if (v.validarCarga(peso)) {
