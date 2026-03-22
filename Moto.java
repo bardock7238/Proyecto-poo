@@ -18,7 +18,7 @@ public class Moto extends Terrestre {
     @Override
     public double calcularEmisiones(double distancia) {
         // Emisiones basadas en la distancia
-        return distancia * 0.12; 
+        return distancia * 0.08; 
     }
     
 }
