@@ -1,12 +1,12 @@
-public class Moto extends Terrestre {
-    public Moto() {
-        super("Moto", 30 , 90, 4000); // Valores específicos para una moto
+public class Dron extends Aereo {
+    public Dron() {
+        super("Dron", 5 , 60,8000); // Valores específicos para un dron
     }
 
     @Override
     public double calcularCosto(double peso, double distancia) {
         // Costo basado en el peso y la distancia
-        return costobase + (peso * 500) + (distancia * 100);
+        return costobase + (peso * 1000) + (distancia * 300);
     }
 
     @Override
@@ -17,9 +17,7 @@ public class Moto extends Terrestre {
 
     @Override
     public double calcularEmisiones(double distancia) {
-        // Emisiones basadas en la distancia
-        return distancia * 0.08; 
+       return distancia * 0.02; //Emisiones basadas en la electricidad 
     }
     
 }
-

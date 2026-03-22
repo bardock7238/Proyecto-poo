@@ -1,12 +1,12 @@
-public class Moto extends Terrestre {
-    public Moto() {
-        super("Moto", 30 , 90, 4000); // Valores específicos para una moto
+public class Bicicleta extends Terrestre {
+    public Bicicleta() {
+        super("Bicicleta", 15 , 15, 2000); // Valores específicos para una bicicleta
     }
 
     @Override
     public double calcularCosto(double peso, double distancia) {
         // Costo basado en el peso y la distancia
-        return costobase + (peso * 500) + (distancia * 100);
+        return costobase + (peso * 100) + (distancia * 50);
     }
 
     @Override
@@ -17,9 +17,7 @@ public class Moto extends Terrestre {
 
     @Override
     public double calcularEmisiones(double distancia) {
-        // Emisiones basadas en la distancia
-        return distancia * 0.08; 
+        return 0; // Las bicicletas no emiten gases contaminantes
     }
     
 }
-

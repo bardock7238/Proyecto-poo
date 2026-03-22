@@ -6,7 +6,7 @@ public class Auto extends Terrestre {
     @Override
     public double calcularCosto(double peso, double distancia) {
         // Costo basado en el peso y la distancia
-        return costobase + (peso * 0.5) + (distancia * 0.1);
+        return costobase + (peso * 500) + (distancia * 100);
     }
 
     @Override
