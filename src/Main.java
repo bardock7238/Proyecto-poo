@@ -82,8 +82,7 @@ public class Main{
                                System.out.println("\n" + v.getNombre() + ": No puede transportar " + peso + " kg");
                         }
                     }
-                }
-                default -> { }
+                }  
             }
         }   while (opcion != 5);
               System.out.println("Saliendo del sistema.");  
