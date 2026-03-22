@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main{
     public static void main(String[] args) {
         // Crear objetos de cada tipo de vehículo
-            Vehiculo[] vehiculos = {
+        Vehiculo[] vehiculos = {
             new Auto(),
             new Moto(),
             new Camion(),
@@ -24,70 +24,87 @@ public class Main{
             System.out.println("4. Ver reporte comparativo");
             System.out.println("5. Salir");
             System.out.print("Seleccione una opcion: ");
-            opcion = scanner.nextInt();
+
             double peso, distancia;
+            opcion = 0;
 
-            switch (opcion) {
-                case 1 -> {// Calcular costo de envío
-                    System.out.println("\nIngrese el peso del paquete en kg: ");
-                    peso = scanner.nextDouble();
-                    System.out.println("Ingrese la distancia a recorrer en km: ");
-                    distancia = scanner.nextDouble();
-                    for(Vehiculo v : vehiculos){
-                        if (v.validarCarga(peso)){
-                            System.out.println(v.getNombre() + ": $" + v.calcularCosto(peso, distancia));
-                        } else {
-                            System.out.println(v.getNombre() + ": No puede transportar esta carga.");
+            try {
+                opcion = scanner.nextInt();
+                switch (opcion) {
+                    case 1 -> {
+                        System.out.println("\nIngrese el peso del paquete en kg: ");
+                        peso = scanner.nextDouble();
+                        if (peso <= 0) {
+                            System.out.println("El peso debe ser mayor a 0.");
+                            break;
+                        }
+                        System.out.println("Ingrese la distancia a recorrer en km: ");
+                        distancia = scanner.nextDouble();
+                        for (Vehiculo v : vehiculos) {
+                            if (v.validarCarga(peso)) {
+                                System.out.println(v.getNombre() + ": $" + v.calcularCosto(peso, distancia));
+                            } else {
+                                System.out.println(v.getNombre() + ": No puede transportar esta carga.");
+                            }
                         }
                     }
-                }
-                case 2 -> {// Calcular tiempo de envío
-                    System.out.println("Ingrese la distancia a recorrer en km: ");
-                    distancia = scanner.nextDouble();
-                    for(Vehiculo v : vehiculos){// Redondear a 2 decimales
-                       double tiempo = (int)(v.calcularTiempo(distancia) * 100) / 100.0;
-                       // Mostrar resultados
-                       System.out.println(v.getNombre() + ": " + tiempo + " horas");
-                    }
-                }
-                case 3 -> {// Validar carga
-                    System.out.println("Ingrese el peso del paquete en kg: ");
-                    peso = scanner.nextDouble();
-                    for(Vehiculo v : vehiculos){
-                        if (v.validarCarga(peso)){
-                            System.out.println(v.getNombre() + ": Puede transportar esta carga.");
-                        } else {
-                            System.out.println(v.getNombre() + ": No puede transportar esta carga.");
+                    case 2 -> {
+                        System.out.println("Ingrese la distancia a recorrer en km: ");
+                        distancia = scanner.nextDouble();
+                        for (Vehiculo v : vehiculos) {
+                            double tiempo = (int)(v.calcularTiempo(distancia) * 100) / 100.0;
+                            System.out.println(v.getNombre() + ": " + tiempo + " horas");
                         }
                     }
-                }
-                case 4 -> {// Ver reporte comparativo
-                    System.out.println("\nIngrese el peso del paquete en kg: ");
-                    peso = scanner.nextDouble();
-                    System.out.println("Ingrese la distancia a recorrer en km: ");
-                    distancia = scanner.nextDouble();
-                    System.out.println("\nReporte comparativo:");
-                    for(Vehiculo v : vehiculos){
-                        if (v.validarCarga(peso)) {
-                              System.out.println("\n" + v.getNombre());
-                              // Redondear a 2 decimales
-                              double costo = (int)(v.calcularCosto(peso, distancia) * 100) / 100.0;
-                              double tiempo = (int)(v.calcularTiempo(distancia) * 100) / 100.0;
-                              double emisiones = (int)(v.calcularEmisiones(distancia) * 100) / 100.0;
-                              // Mostrar resultados
-                              System.out.println("  Costo:     $" + costo);
-                              System.out.println("  Tiempo:    " + tiempo + " horas");
-                              System.out.println("  Emisiones: " + emisiones + " kg CO2");
-                             } else {
-                               System.out.println("\n" + v.getNombre() + ": No puede transportar " + peso + " kg");
+                    case 3 -> {
+                        System.out.println("Ingrese el peso del paquete en kg: ");
+                        peso = scanner.nextDouble();
+                        if (peso <= 0) {
+                            System.out.println("El peso debe ser mayor a 0.");
+                            break;
+                        }
+                        for (Vehiculo v : vehiculos) {
+                            if (v.validarCarga(peso)) {
+                                System.out.println(v.getNombre() + ": Puede transportar esta carga.");
+                            } else {
+                                System.out.println(v.getNombre() + ": No puede transportar esta carga.");
+                            }
                         }
                     }
-                }  
+                    case 4 -> {
+                        System.out.println("\nIngrese el peso del paquete en kg: ");
+                        peso = scanner.nextDouble();
+                        if (peso <= 0) {
+                            System.out.println("El peso debe ser mayor a 0.");
+                            break;
+                        }
+                        System.out.println("Ingrese la distancia a recorrer en km: ");
+                        distancia = scanner.nextDouble();
+                        System.out.println("\nReporte comparativo:");
+                        for (Vehiculo v : vehiculos) {
+                            if (v.validarCarga(peso)) {
+                                System.out.println("\n" + v.getNombre());
+                                double costo = (int)(v.calcularCosto(peso, distancia) * 100) / 100.0;
+                                double tiempo = (int)(v.calcularTiempo(distancia) * 100) / 100.0;
+                                double emisiones = (int)(v.calcularEmisiones(distancia) * 100) / 100.0;
+                                System.out.println("  Costo:     $" + costo);
+                                System.out.println("  Tiempo:    " + tiempo + " horas");
+                                System.out.println("  Emisiones: " + emisiones + " kg CO2");
+                            } else {
+                                System.out.println("\n" + v.getNombre() + ": No puede transportar " + peso + " kg");
+                            }
+                        }
+                    }
+                    case 5 -> System.out.println("Saliendo del sistema.");
+                    default -> System.out.println("Opcion no valida, intente de nuevo.");
+                }
+            } catch (Exception e) {
+                System.out.println("Error: ingrese un valor numerico valido.");
+                scanner.nextLine();
             }
-        }   while (opcion != 5);
-              System.out.println("Saliendo del sistema.");  
-              scanner.close();
 
+        } while (opcion != 5);
 
+        scanner.close();
     }
 }
