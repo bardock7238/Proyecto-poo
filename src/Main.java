@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main{
     public static void main(String[] args) {
-        // Crear objetos de cada tipo de vehículo
+        // Crear objetos de cada tipo de vehículo y almacenarlos en un arreglo
         Vehiculo[] vehiculos = {
             new Auto(),
             new Moto(),
