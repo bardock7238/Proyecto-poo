@@ -40,6 +40,10 @@ public class Main{
                         }
                         System.out.println("Ingrese la distancia a recorrer en km: ");
                         distancia = scanner.nextDouble();
+                            if (distancia <= 0) {
+                            System.out.println("La distancia debe ser mayor a 0.");
+                            break;
+                            }
                         for (Vehiculo v : vehiculos) {
                             if (v.validarCarga(peso)) {
                                 System.out.println(v.getNombre() + ": $" + v.calcularCosto(peso, distancia));
